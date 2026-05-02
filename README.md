@@ -10,8 +10,6 @@ The **Child Immunization Tracking System (CITS)** helps healthcare institutions 
 
 The system aims to improve vaccination coverage, reduce missed immunizations, and support efficient healthcare management.
 
----
-
 ###  Objectives
 
 - Digitize child immunization records
@@ -21,8 +19,6 @@ The system aims to improve vaccination coverage, reduce missed immunizations, an
 - Reduce missed or delayed vaccinations
 - Provide centralized access to vaccination data
 
----
-
 ### Target Users
 
 | User Role | Description |
@@ -30,7 +26,6 @@ The system aims to improve vaccination coverage, reduce missed immunizations, an
 | Admin | Manages the system and users |
 | Healthcare Worker | Records vaccinations and manages child data |
 | Parent/Guardian | Views child vaccination records and reminders |
-
 
 ---
 
@@ -57,8 +52,6 @@ Supports secure login and access control for:
 - View vaccination history
 - Receive reminders
 
----
-
 ### Child Registration & Profile Management
 Allows creation and management of child profiles.
 
@@ -73,8 +66,6 @@ Allows creation and management of child profiles.
 - Gender
 - Parent/Guardian Details
 - Contact Information
-
----
 
 ### Immunization Tracking System
 Tracks vaccination schedules and immunization history.
@@ -91,8 +82,6 @@ Tracks vaccination schedules and immunization history.
 - Missed
 - Upcoming
 
----
-
 ### Notifications & Reminder System
 Sends reminders to parents about upcoming vaccines.
 
@@ -101,8 +90,6 @@ Sends reminders to parents about upcoming vaccines.
 - Email reminders
 - Due date alerts
 - Missed vaccine alerts
-
----
 
 ### Reports & Analytics
 Provides basic immunization reports for admins.
@@ -114,12 +101,11 @@ Provides basic immunization reports for admins.
 - PDF/CSV export
 
 ---
+
 # 3 Technology Stack
 The Child Immunization Tracking System is built using modern web technologies to ensure scalability, security, performance, and ease of maintenance. The system follows a client-server architecture with separate frontend and backend services connected through RESTful APIs.
 
 The selected technologies are lightweight, developer-friendly, and suitable for handling authentication, immunization records, notifications, and reporting functionalities efficiently.
-
----
 
 ## Frontend Technologies
 The frontend provides the user interface for parents and healthcare workers.
@@ -136,8 +122,6 @@ The frontend provides the user interface for parents and healthcare workers.
 - Connect frontend to backend APIs
 - Improve user experience across devices
 
----
-
 ## Backend Technologies
 The backend handles business logic, authentication, APIs, and data processing.
 
@@ -152,8 +136,6 @@ The backend handles business logic, authentication, APIs, and data processing.
 - Handle authentication and authorization
 - Manage server-side operations
 - Secure user data
-
----
 
 ## Database & Deployment Technologies
 These technologies manage data storage, hosting, and deployment.
@@ -182,8 +164,6 @@ Each vaccine in the database contains:
 
 When a child is registered, the system automatically calculates all vaccine due dates based on the child’s DOB.
 
----
-
 ## How the Tracking Works
 
 ### Child Registration
@@ -197,8 +177,6 @@ Example:
 | BCG | At birth | DOB |
 | OPV 1 | 6 weeks | DOB + 6 weeks |
 | Pentavalent 1 | 6 weeks | DOB + 6 weeks |
-
----
 
 ### Vaccine Status Monitoring
 The system compares:
@@ -214,15 +192,12 @@ Based on this comparison, the vaccine status becomes:
 | Completed | Vaccine has been administered |
 | Missed | Due date passed without vaccination |
 
----
-
 ### Recording Immunization
 When a healthcare worker administers a vaccine:
 - The vaccine is marked as **Completed**
 - Date administered is stored
 - Next vaccine schedule is updated automatically
 
----
 ### Reminder System
 The system sends reminders to parents:
 - Before vaccine due date
@@ -232,7 +207,6 @@ The system sends reminders to parents:
 Notifications can be sent through:
 - SMS
 - Email
----
 
 ### Schedule Calculation Logic
 The system uses age intervals such as:
@@ -243,12 +217,11 @@ The system uses age intervals such as:
 - 6 months
 - 9 months
 These intervals are added to the child’s DOB to determine vaccine due dates automatically.
+
 ---
 
 # 5. System Architecture Overview
 The Child Immunization Tracking System follows a three-tier architecture consisting of the Client Layer, Application Layer, and Data Layer. These components work together to manage child immunization records, vaccination schedules, and notifications efficiently.
-
----
 
 ### **Client Layer (Frontend)**
 The client layer is the part of the system used by parents and healthcare workers through a web browser or mobile device.
@@ -257,7 +230,6 @@ It allows users to register, log in, register children, view immunization record
 
 The frontend is developed using React.js and Tailwind CSS.
 
----
 ### **Application Layer (Backend)**
 The application layer handles the core business logic of the system. It processes requests from the frontend, validates data, manages authentication, and communicates with the database.
 
@@ -265,14 +237,10 @@ The backend is also responsible for generating vaccine schedules based on a chil
 
 The backend is built using Node.js and Express.js.
 
----
-
 ### **Data Layer (Database)**
 The data layer stores all system information, including user accounts, child profiles, vaccine schedules, immunization records, and notifications.
 
 PostgreSQL is used as the database management system because it provides reliable and secure storage for structured data.
-
----
 
 ### **System Data Flow**
 When a user performs an action on the frontend, such as registering a child, the request is sent to the backend. The backend processes the request and stores or retrieves data from the database.
@@ -280,8 +248,6 @@ When a user performs an action on the frontend, such as registering a child, the
 After a child is registered, the system automatically generates vaccine schedules using the child’s date of birth. The system continuously checks vaccine due dates and updates vaccine statuses as completed, pending, upcoming, or missed.
 
 The notification service sends reminders to parents when vaccines are due or missed.
-
----
 
 ### **Security**
 The system secures user data using password hashing, JWT authentication, and role-based access control.
