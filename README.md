@@ -197,7 +197,7 @@ These technologies manage data storage, hosting, and deployment.
 
 ---
 
-# 4 Immunization Schedule Tracking Logic
+# 4. Immunization Schedule Tracking Logic
 
 The system tracks immunization schedules using the child’s **Date of Birth (DOB)** and a predefined vaccination timetable.
 
@@ -275,7 +275,7 @@ Notifications can be sent through:
 
 ---
 
-## Schedule Calculation Logic
+### Schedule Calculation Logic
 
 The system uses age intervals such as:
 
@@ -290,162 +290,61 @@ These intervals are added to the child’s DOB to determine vaccine due dates au
 
 ---
 
+# 5. System Architecture Overview
 
-#  System Architecture
-
-## Frontend
-
-- React.js / Next.js
-- Bootstrap or Tailwind CSS
-
-## Backend
-
-- Node.js + Express.js
-- RESTful APIs
-
-## Database
-
-- PostgreSQL (Recommended)
-- MongoDB (Alternative)
-
-## Deployment
-
-- Docker
-- GitHub Actions CI/CD
-- AWS / Azure / Firebase
+The Child Immunization Tracking System follows a three-tier architecture consisting of the Client Layer, Application Layer, and Data Layer. These components work together to manage child immunization records, vaccination schedules, and notifications efficiently.
 
 ---
 
-#  Database Schema
+### **Client Layer (Frontend)**
 
-## Users Table
+The client layer is the part of the system used by parents and healthcare workers through a web browser or mobile device.
 
-| Column | Type |
-|---|---|
-| id | UUID |
-| name | VARCHAR |
-| email | VARCHAR |
-| password_hash | TEXT |
-| role | VARCHAR |
-| created_at | TIMESTAMP |
+It allows users to register, log in, register children, view immunization records, and receive vaccination reminders. The frontend communicates with the backend through RESTful APIs.
+
+The frontend is developed using React.js and Tailwind CSS.
 
 ---
 
-## Children Table
+### **Application Layer (Backend)**
 
-| Column | Type |
-|---|---|
-| id | UUID |
-| full_name | VARCHAR |
-| date_of_birth | DATE |
-| gender | VARCHAR |
-| parent_id | UUID |
+The application layer handles the core business logic of the system. It processes requests from the frontend, validates data, manages authentication, and communicates with the database.
+
+The backend is also responsible for generating vaccine schedules based on a child’s date of birth, tracking vaccine status, and sending reminders for upcoming or missed vaccinations.
+
+The backend is built using Node.js and Express.js.
 
 ---
 
-## Vaccines Table
+### **Data Layer (Database)**
 
-| Column | Type |
-|---|---|
-| id | UUID |
-| vaccine_name | VARCHAR |
-| description | TEXT |
-| recommended_age | VARCHAR |
+The data layer stores all system information, including user accounts, child profiles, vaccine schedules, immunization records, and notifications.
+
+PostgreSQL is used as the database management system because it provides reliable and secure storage for structured data.
 
 ---
 
-## Immunization Records Table
+### **System Data Flow**
 
-| Column | Type |
-|---|---|
-| id | UUID |
-| child_id | UUID |
-| vaccine_id | UUID |
-| date_administered | DATE |
-| status | VARCHAR |
+When a user performs an action on the frontend, such as registering a child, the request is sent to the backend. The backend processes the request and stores or retrieves data from the database.
+
+After a child is registered, the system automatically generates vaccine schedules using the child’s date of birth. The system continuously checks vaccine due dates and updates vaccine statuses as completed, pending, upcoming, or missed.
+
+The notification service sends reminders to parents when vaccines are due or missed.
 
 ---
 
-## Health Facilities Table
+### **Security**
 
-| Column | Type |
-|---|---|
-| id | UUID |
-| facility_name | VARCHAR |
-| location | TEXT |
-| contact_info | TEXT |
+The system secures user data using password hashing, JWT authentication, and role-based access control.
 
----
+Parents can only access their own child’s records, while healthcare workers have permission to manage immunization data.
 
-#  Security Features
-
-- Password hashing with bcrypt
-- JWT authentication
-- HTTPS encryption
-- Role-based authorization
-- Secure API access
+All communication between the frontend and backend is secured using HTTPS.
 
 ---
 
-#  API Endpoints
 
-## Authentication
-
-### Register User
-
-```http
-POST /api/auth/register
-```
-
-### Login User
-
-```http
-POST /api/auth/login
-```
-
----
-
-## Child Management
-
-### Get All Children
-
-```http
-GET /api/children
-```
-
-### Register Child
-
-```http
-POST /api/children
-```
-
-### Get Child by ID
-
-```http
-GET /api/children/:id
-```
-
----
-
-## Immunization
-
-### Get Vaccines
-
-```http
-GET /api/vaccines
-```
-
-### Add Immunization Record
-
-```http
-POST /api/immunizations
-```
-
-### Get Child Immunization Records
-
-```http
-GET /api/immunizations/:child_id
-```
 
 ---
 
