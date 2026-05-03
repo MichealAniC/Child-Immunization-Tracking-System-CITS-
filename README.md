@@ -102,7 +102,7 @@ Provides basic immunization reports for admins.
 
 ---
 
-# 3 Technology Stack
+# 3. Technology Stack
 The Child Immunization Tracking System is built using modern web technologies to ensure scalability, security, performance, and ease of maintenance. The system follows a client-server architecture with separate frontend and backend services connected through RESTful APIs.
 
 The selected technologies are lightweight, developer-friendly, and suitable for handling authentication, immunization records, notifications, and reporting functionalities efficiently.
