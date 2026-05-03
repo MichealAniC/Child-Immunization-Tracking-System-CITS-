@@ -4,7 +4,7 @@ A digital platform for tracking and managing child vaccination records, designed
 
 ---
 
-# 1. Project Overview
+# 1.) Project Overview
 
 The **Child Immunization Tracking System (CITS)** helps healthcare institutions and parents monitor children's immunization schedules, maintain digital vaccination records, and receive automated reminders for upcoming vaccines.
 
@@ -29,7 +29,7 @@ The system aims to improve vaccination coverage, reduce missed immunizations, an
 
 ---
 
-# 2. Core Features
+# 2.) Core Features
 
 ### User Authentication & Authorization
 Supports secure login and access control for:
@@ -102,7 +102,7 @@ Provides basic immunization reports for admins.
 
 ---
 
-# 3. Technology Stack
+# 3.) Technology Stack
 The Child Immunization Tracking System is built using modern web technologies to ensure scalability, security, performance, and ease of maintenance. The system follows a client-server architecture with separate frontend and backend services connected through RESTful APIs.
 
 The selected technologies are lightweight, developer-friendly, and suitable for handling authentication, immunization records, notifications, and reporting functionalities efficiently.
@@ -154,7 +154,7 @@ These technologies manage data storage, hosting, and deployment.
 
 ---
 
-# 4. Immunization Schedule Tracking Logic
+# 4.) Immunization Schedule Tracking Logic
 The system tracks immunization schedules using the child’s **Date of Birth (DOB)** and a predefined vaccination timetable.
 Each vaccine in the database contains:
 - Vaccine name
@@ -220,7 +220,7 @@ These intervals are added to the child’s DOB to determine vaccine due dates au
 
 ---
 
-# 5. System Architecture Overview
+# 5.) System Architecture Overview
 The Child Immunization Tracking System follows a three-tier architecture consisting of the Client Layer, Application Layer, and Data Layer. These components work together to manage child immunization records, vaccination schedules, and notifications efficiently.
 
 ### **Client Layer (Frontend)**
