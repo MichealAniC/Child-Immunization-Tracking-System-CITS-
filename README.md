@@ -632,136 +632,45 @@ The system restricts access based on user roles to ensure data privacy and secur
 Role permissions are enforced at the backend using JWT authentication and protected API routes. Unauthorized users cannot access restricted resources or perform unauthorized actions.
 
 ---
-#  Project Structure
 
-```bash
-child-immunization-system/
-│
-├── client/                 # Frontend application
-├── server/                 # Backend API
-├── database/               # Database schema and migrations
-├── docs/                   # Documentation
-├── tests/                  # Test files
-├── .env                    # Environment variables
-├── package.json
-└── README.md
+# 9. Evaluation Metrics
+The system is evaluated using key measurable metrics that assess accuracy, performance, reliability, and real-world impact on immunization tracking.
+
+### Vaccine Schedule Accuracy (%)
+Measures how correctly the system generates vaccination schedules based on a child’s Date of Birth compared to standard immunization guidelines. It ensures vaccine timelines are correctly calculated.
+
+## Notification Delivery Success Rate (%)
+Measures how many vaccination reminders are successfully delivered to parents via SMS or email. It evaluates the reliability of the reminder system.
+
+```text id="n8k3qp"
+Success Rate = (Delivered notifications / Sent notifications) × 100
 ```
 
----
-
-#  Installation Guide
-
-## Clone Repository
-
-```bash
-git clone https://github.com/your-username/child-immunization-system.git
+### Immunization Completion Rate Improvement (%)
+Measures how much the system improves vaccination completion compared to manual tracking. It shows the real-world impact of the system.
+```text id="c9m2zd"
+Improvement = After system usage − Before system usage
 ```
 
-## Navigate into Project Folder
+### System Response Time
+Measures how fast the system responds to user actions such as login, child registration, and fetching records. Lower time means better performance.
 
-```bash
-cd child-immunization-system
-```
+### Notification Delivery Time (Latency)
+Measures the time taken for a reminder to reach a parent after being triggered. It ensures timely vaccine alerts.
 
-## Install Dependencies
+### Authentication Success Rate (%)
+Measures the reliability of login and authentication processes. It checks how often valid users successfully log in.
 
-```bash
-npm install
-```
+### Data Integrity Error Rate (%)
+Measures how often data errors or inconsistencies occur in the database. Lower values indicate better data reliability.
 
-## Configure Environment Variables
+###  System Uptime (%)
+Measures system availability over time. It ensures the system is accessible when needed without downtime.
 
-Create a `.env` file:
+### User Task Completion Time
+Measures how long users take to complete tasks like registering a child or recording vaccination. It evaluates usability and efficiency.
 
-```env
-PORT=5000
-DATABASE_URL=your_database_url
-JWT_SECRET=your_secret_key
-```
 
-## Run Database Migrations
-
-```bash
-npm run migrate
-```
-
-## Start Development Server
-
-```bash
-npm run dev
-```
-
----
-
-#  Testing
-
-## Run Unit Tests
-
-```bash
-npm test
-```
-
-## API Testing Tools
-
-- Postman
-- Insomnia
-
----
-
-#  Deployment
-
-## Recommended Platforms
-
-- AWS
-- Render
-- Railway
-- Heroku
-- Firebase
-
-## CI/CD
-
-GitHub Actions can be used for:
-
-- Automated testing
-- Deployment pipelines
-- Code quality checks
-
----
-
-#  Future Enhancements
-
-- Mobile application support
-- Offline synchronization
-- AI-powered vaccine predictions
-- Integration with national health databases
-- Multi-language support
-
----
-
-#  Contribution Guidelines
-
-1. Fork the repository
-2. Create a new branch
-
-```bash
-git checkout -b feature-name
-```
-
-3. Commit changes
-
-```bash
-git commit -m "Added new feature"
-```
-
-4. Push changes
-
-```bash
-git push origin feature-name
-```
-
-5. Open a Pull Request
-
----
 
 
 
