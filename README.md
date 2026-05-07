@@ -401,18 +401,13 @@ flowchart TD
 ```
 ---
 
-# 7. 🗄️ Database Design
-
+# 7.) Database Design
 The database is designed to store and manage all information related to users, children, vaccines, immunization records, and notifications. The system uses a relational database structure to maintain data consistency and support secure record management.
 
 PostgreSQL is used as the database management system because it provides reliable storage, strong relational support, and efficient querying for structured healthcare data.
 
----
-
-# Database Tables
-
-## 1. Users Table
-
+## Database Tables
+### Users Table
 The Users table stores information for all system users, including healthcare workers and parents.
 
 | Column | Type | Description |
@@ -424,10 +419,7 @@ The Users table stores information for all system users, including healthcare wo
 | role | VARCHAR | User role (Admin or Parent) |
 | created_at | TIMESTAMP | Account creation date |
 
----
-
-## 2. Children Table
-
+### Children Table
 The Children table stores child profile information and links each child to a parent account.
 
 | Column | Type | Description |
@@ -439,10 +431,7 @@ The Children table stores child profile information and links each child to a pa
 | parent_id | UUID | Linked parent account |
 | created_at | TIMESTAMP | Registration date |
 
----
-
-## 3. Vaccines Table
-
+### Vaccines Table
 The Vaccines table stores predefined vaccine information and recommended schedules.
 
 | Column | Type | Description |
@@ -452,10 +441,7 @@ The Vaccines table stores predefined vaccine information and recommended schedul
 | recommended_age | VARCHAR | Recommended vaccine age |
 | description | TEXT | Vaccine description |
 
----
-
-## 4. Immunization Records Table
-
+### Immunization Records Table
 The Immunization_Records table stores vaccination history for each child.
 
 | Column | Type | Description |
@@ -468,16 +454,12 @@ The Immunization_Records table stores vaccination history for each child.
 | administered_by | UUID | Healthcare worker ID |
 
 ### Vaccine Status Values
-
 - Pending
 - Completed
 - Missed
 - Upcoming
 
----
-
-## 5. Notifications Table
-
+###  Notifications Table
 The Notifications table stores reminder and alert records sent to parents.
 
 | Column | Type | Description |
@@ -488,28 +470,12 @@ The Notifications table stores reminder and alert records sent to parents.
 | notification_type | VARCHAR | SMS or Email |
 | sent_at | TIMESTAMP | Date notification was sent |
 
----
-
-# Database Relationships
-
+## Database Relationships
 The database tables are connected using foreign keys to maintain relationships between records.
-
 - A parent can have multiple children.
 - A child can have multiple immunization records.
 - Each immunization record is linked to a vaccine.
 - Notifications are linked to child records.
-
----
-
-# Database Design Benefits
-
-The database structure supports:
-
-- Secure data storage
-- Efficient data retrieval
-- Easy vaccine tracking
-- Scalable record management
-- Consistent relationship handling
 
 ---
 ## Database Entity Relationship Diagram
@@ -569,23 +535,17 @@ erDiagram
     CHILDREN ||--o{ NOTIFICATIONS : "receives"
 ```
 ---
-# 8. 🔐 Roles & Permissions
-
+# 8.) Roles & Permissions
 The system uses Role-Based Access Control (RBAC) to manage access to features and protect sensitive immunization data. Each user is assigned a role that determines the actions they can perform within the system.
 
 The two main roles in the system are:
-
 - Admin (Healthcare Worker)
 - Parent/Guardian
 
----
-
-# 1. Admin (Healthcare Worker)
-
+### Admin (Doctors/Healthcare Worker)
 Admins are responsible for managing child immunization records and monitoring vaccination activities within the system.
 
 ### Permissions
-
 - Register and manage child records
 - Record administered vaccines
 - Update immunization status
@@ -594,14 +554,10 @@ Admins are responsible for managing child immunization records and monitoring va
 - Send vaccination reminders
 - Manage vaccine schedules
 
----
-
-# 2. Parent / Guardian
-
+### Parent / Guardian
 Parents or guardians can manage and monitor their child’s vaccination information.
 
 ### Permissions
-
 - Register children
 - View child profiles
 - View vaccination history
@@ -609,10 +565,7 @@ Parents or guardians can manage and monitor their child’s vaccination informat
 - Receive reminders and notifications
 - Access only their child’s records
 
----
-
-# Access Control Rules
-
+## Access Control Rules
 The system restricts access based on user roles to ensure data privacy and security.
 
 | Feature | Admin | Parent |
@@ -626,8 +579,7 @@ The system restricts access based on user roles to ensure data privacy and secur
 | Receive Notifications | ❌ | ✅ |
 
 ---
-
-# Security Enforcement
+### Security Enforcement
 
 Role permissions are enforced at the backend using JWT authentication and protected API routes. Unauthorized users cannot access restricted resources or perform unauthorized actions.
 
@@ -639,34 +591,26 @@ The system is evaluated using key measurable metrics that assess accuracy, perfo
 ### Vaccine Schedule Accuracy (%)
 Measures how correctly the system generates vaccination schedules based on a child’s Date of Birth compared to standard immunization guidelines. It ensures vaccine timelines are correctly calculated.
 
-## Notification Delivery Success Rate (%)
+### Notification Delivery Success Rate (%)
 Measures how many vaccination reminders are successfully delivered to parents via SMS or email. It evaluates the reliability of the reminder system.
-
 ```text id="n8k3qp"
 Success Rate = (Delivered notifications / Sent notifications) × 100
 ```
-
 ### Immunization Completion Rate Improvement (%)
 Measures how much the system improves vaccination completion compared to manual tracking. It shows the real-world impact of the system.
 ```text id="c9m2zd"
 Improvement = After system usage − Before system usage
 ```
-
 ### System Response Time
 Measures how fast the system responds to user actions such as login, child registration, and fetching records. Lower time means better performance.
-
 ### Notification Delivery Time (Latency)
 Measures the time taken for a reminder to reach a parent after being triggered. It ensures timely vaccine alerts.
-
 ### Authentication Success Rate (%)
 Measures the reliability of login and authentication processes. It checks how often valid users successfully log in.
-
 ### Data Integrity Error Rate (%)
 Measures how often data errors or inconsistencies occur in the database. Lower values indicate better data reliability.
-
 ###  System Uptime (%)
 Measures system availability over time. It ensures the system is accessible when needed without downtime.
-
 ### User Task Completion Time
 Measures how long users take to complete tasks like registering a child or recording vaccination. It evaluates usability and efficiency.
 
