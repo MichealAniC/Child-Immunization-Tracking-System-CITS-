@@ -1,0 +1,239 @@
+# Child Immunization Tracking System (CITS)
+# Implementation Requirements & Dependencies
+# Generated for Qoder AI Agent Setup
+
+==================================================
+PROJECT STACK
+==================================================
+
+Frontend:
+- React.js
+- Tailwind CSS
+- Axios
+- React Router DOM
+
+Backend:
+- Node.js
+- Express.js
+- PostgreSQL
+- JWT Authentication
+
+Database:
+- PostgreSQL
+
+Development Tools:
+- Git
+- GitHub
+- Postman
+- VS Code
+
+==================================================
+SYSTEM REQUIREMENTS
+==================================================
+
+Install the following on your machine:
+
+1. Node.js (LTS Version Recommended)
+https://nodejs.org/
+
+2. PostgreSQL
+https://www.postgresql.org/download/
+
+3. Git
+https://git-scm.com/downloads
+
+4. VS Code
+https://code.visualstudio.com/
+
+==================================================
+BACKEND DEPENDENCIES
+==================================================
+
+Initialize Backend:
+npm init -y
+
+Install Core Backend Packages:
+npm install express cors dotenv pg bcryptjs jsonwebtoken
+
+Install Development Dependencies:
+npm install --save-dev nodemon
+
+Optional Utilities:
+npm install morgan helmet
+
+==================================================
+FRONTEND DEPENDENCIES
+==================================================
+
+Create Frontend App:
+npm create vite@latest frontend -- --template react
+
+Install Frontend Packages:
+npm install axios react-router-dom
+
+Install Tailwind CSS:
+npm install -D tailwindcss postcss autoprefixer
+
+Initialize Tailwind:
+npx tailwindcss init -p
+
+==================================================
+DATABASE REQUIREMENTS
+==================================================
+
+Database:
+- PostgreSQL
+
+Required Tables:
+- users
+- children
+- vaccines
+- vaccine_schedule
+- child_vaccinations
+
+==================================================
+AUTHENTICATION REQUIREMENTS
+==================================================
+
+Authentication Method:
+- JWT (JSON Web Token)
+
+Password Encryption:
+- bcryptjs
+
+Protected Routes:
+- Admin routes
+- Health worker routes
+
+==================================================
+ENVIRONMENT VARIABLES (.env)
+==================================================
+
+PORT=5000
+
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=postgres
+DB_PASSWORD=yourpassword
+DB_NAME=child_immunization_db
+
+JWT_SECRET=your_secret_key
+
+==================================================
+BACKEND FOLDER STRUCTURE
+==================================================
+
+backend/
+│
+├── config/
+├── controllers/
+├── middleware/
+├── models/
+├── routes/
+├── services/
+├── utils/
+├── app.js
+├── server.js
+└── .env
+
+==================================================
+FRONTEND FOLDER STRUCTURE
+==================================================
+
+frontend/
+│
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── services/
+│   ├── layouts/
+│   ├── context/
+│   └── App.jsx
+│
+└── public/
+
+==================================================
+API MODULES TO IMPLEMENT
+==================================================
+
+Authentication:
+- Login
+- Register User
+- JWT Verification
+
+Children:
+- Register Child
+- Get Children
+- Update Child
+- Delete Child
+
+Vaccines:
+- Get Vaccine Schedule
+- Assign Vaccines
+
+Vaccination Records:
+- Record Vaccination
+- Update Vaccination Status
+- Get Child Vaccination History
+
+Dashboard:
+- Total Registered Children
+- Upcoming Vaccinations
+- Completed Vaccinations
+
+==================================================
+FUTURE FEATURES
+==================================================
+
+- SMS Notifications
+- Parent Portal
+- Mobile App
+- Email Notifications
+- Advanced Analytics
+- Offline Synchronization
+
+==================================================
+TESTING TOOLS
+==================================================
+
+API Testing:
+- Postman
+
+Frontend Testing:
+- React Testing Library
+
+==================================================
+DEPLOYMENT OPTIONS
+==================================================
+
+Frontend:
+- Vercel
+- Netlify
+
+Backend:
+- Render
+- Railway
+
+Database Hosting:
+- Supabase PostgreSQL
+- Neon PostgreSQL
+
+==================================================
+PROJECT IMPLEMENTATION FLOW
+==================================================
+
+1. Setup Backend
+2. Setup PostgreSQL Database
+3. Create Database Tables
+4. Build Authentication APIs
+5. Build Child APIs
+6. Build Vaccination APIs
+7. Setup Frontend
+8. Build Dashboard UI
+9. Connect Frontend to Backend
+10. Testing
+11. Deployment
+
+==================================================
+END OF REQUIREMENTS
+==================================================
