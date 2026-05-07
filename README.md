@@ -2,8 +2,6 @@
 
 A digital platform for tracking and managing child vaccination records, designed for healthcare providers, parents, and health administrators.
 
----
-
 # 1.) Project Overview
 
 The **Child Immunization Tracking System (CITS)** helps healthcare institutions and parents monitor children's immunization schedules, maintain digital vaccination records, and receive automated reminders for upcoming vaccines.
