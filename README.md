@@ -401,6 +401,237 @@ flowchart TD
 ```
 ---
 
+# 7. 🗄️ Database Design
+
+The database is designed to store and manage all information related to users, children, vaccines, immunization records, and notifications. The system uses a relational database structure to maintain data consistency and support secure record management.
+
+PostgreSQL is used as the database management system because it provides reliable storage, strong relational support, and efficient querying for structured healthcare data.
+
+---
+
+# Database Tables
+
+## 1. Users Table
+
+The Users table stores information for all system users, including healthcare workers and parents.
+
+| Column | Type | Description |
+|---|---|---|
+| id | UUID | Unique user identifier |
+| full_name | VARCHAR | User full name |
+| email | VARCHAR | User email address |
+| password_hash | TEXT | Encrypted password |
+| role | VARCHAR | User role (Admin or Parent) |
+| created_at | TIMESTAMP | Account creation date |
+
+---
+
+## 2. Children Table
+
+The Children table stores child profile information and links each child to a parent account.
+
+| Column | Type | Description |
+|---|---|---|
+| id | UUID | Unique child identifier |
+| full_name | VARCHAR | Child full name |
+| date_of_birth | DATE | Child date of birth |
+| gender | VARCHAR | Child gender |
+| parent_id | UUID | Linked parent account |
+| created_at | TIMESTAMP | Registration date |
+
+---
+
+## 3. Vaccines Table
+
+The Vaccines table stores predefined vaccine information and recommended schedules.
+
+| Column | Type | Description |
+|---|---|---|
+| id | UUID | Unique vaccine identifier |
+| vaccine_name | VARCHAR | Vaccine name |
+| recommended_age | VARCHAR | Recommended vaccine age |
+| description | TEXT | Vaccine description |
+
+---
+
+## 4. Immunization Records Table
+
+The Immunization_Records table stores vaccination history for each child.
+
+| Column | Type | Description |
+|---|---|---|
+| id | UUID | Unique record identifier |
+| child_id | UUID | Linked child profile |
+| vaccine_id | UUID | Linked vaccine |
+| date_administered | DATE | Date vaccine was given |
+| status | VARCHAR | Vaccine status |
+| administered_by | UUID | Healthcare worker ID |
+
+### Vaccine Status Values
+
+- Pending
+- Completed
+- Missed
+- Upcoming
+
+---
+
+## 5. Notifications Table
+
+The Notifications table stores reminder and alert records sent to parents.
+
+| Column | Type | Description |
+|---|---|---|
+| id | UUID | Unique notification identifier |
+| child_id | UUID | Linked child profile |
+| message | TEXT | Notification content |
+| notification_type | VARCHAR | SMS or Email |
+| sent_at | TIMESTAMP | Date notification was sent |
+
+---
+
+# Database Relationships
+
+The database tables are connected using foreign keys to maintain relationships between records.
+
+- A parent can have multiple children.
+- A child can have multiple immunization records.
+- Each immunization record is linked to a vaccine.
+- Notifications are linked to child records.
+
+---
+
+# Database Design Benefits
+
+The database structure supports:
+
+- Secure data storage
+- Efficient data retrieval
+- Easy vaccine tracking
+- Scalable record management
+- Consistent relationship handling
+
+---
+## Database Entity Relationship Diagram
+```mermaid
+erDiagram
+
+    USERS {
+        UUID id PK
+        VARCHAR full_name
+        VARCHAR email
+        TEXT password_hash
+        VARCHAR role
+        TIMESTAMP created_at
+    }
+
+    CHILDREN {
+        UUID id PK
+        VARCHAR full_name
+        DATE date_of_birth
+        VARCHAR gender
+        UUID parent_id FK
+        TIMESTAMP created_at
+    }
+
+    VACCINES {
+        UUID id PK
+        VARCHAR vaccine_name
+        VARCHAR recommended_age
+        TEXT description
+    }
+
+    IMMUNIZATION_RECORDS {
+        UUID id PK
+        UUID child_id FK
+        UUID vaccine_id FK
+        DATE date_administered
+        VARCHAR status
+        UUID administered_by FK
+    }
+
+    NOTIFICATIONS {
+        UUID id PK
+        UUID child_id FK
+        TEXT message
+        VARCHAR notification_type
+        TIMESTAMP sent_at
+    }
+
+    USERS ||--o{ CHILDREN : "has"
+
+    USERS ||--o{ IMMUNIZATION_RECORDS : "administers"
+
+    CHILDREN ||--o{ IMMUNIZATION_RECORDS : "receives"
+
+    VACCINES ||--o{ IMMUNIZATION_RECORDS : "included_in"
+
+    CHILDREN ||--o{ NOTIFICATIONS : "receives"
+```
+---
+# 8. 🔐 Roles & Permissions
+
+The system uses Role-Based Access Control (RBAC) to manage access to features and protect sensitive immunization data. Each user is assigned a role that determines the actions they can perform within the system.
+
+The two main roles in the system are:
+
+- Admin (Healthcare Worker)
+- Parent/Guardian
+
+---
+
+# 1. Admin (Healthcare Worker)
+
+Admins are responsible for managing child immunization records and monitoring vaccination activities within the system.
+
+### Permissions
+
+- Register and manage child records
+- Record administered vaccines
+- Update immunization status
+- View all child immunization records
+- Generate reports and statistics
+- Send vaccination reminders
+- Manage vaccine schedules
+
+---
+
+# 2. Parent / Guardian
+
+Parents or guardians can manage and monitor their child’s vaccination information.
+
+### Permissions
+
+- Register children
+- View child profiles
+- View vaccination history
+- Track upcoming vaccines
+- Receive reminders and notifications
+- Access only their child’s records
+
+---
+
+# Access Control Rules
+
+The system restricts access based on user roles to ensure data privacy and security.
+
+| Feature | Admin | Parent |
+|---|---|---|
+| User Authentication | ✅ | ✅ |
+| Register Child | ✅ | ✅ |
+| View Child Records | ✅ | Own Records Only |
+| Record Vaccination | ✅ | ❌ |
+| Manage Vaccine Status | ✅ | ❌ |
+| View Reports | ✅ | ❌ |
+| Receive Notifications | ❌ | ✅ |
+
+---
+
+# Security Enforcement
+
+Role permissions are enforced at the backend using JWT authentication and protected API routes. Unauthorized users cannot access restricted resources or perform unauthorized actions.
+
+---
 #  Project Structure
 
 ```bash
