@@ -256,8 +256,50 @@ Parents can only access their own child’s records, while healthcare workers ha
 
 All communication between the frontend and backend is secured using HTTPS.
 
----
+## System Architecture Diagram
+```mermaid
+graph TD
 
+    A[Parents / Guardians]
+    B[Healthcare Workers / Admins]
+
+    subgraph Client Layer
+        C[Frontend Application<br/>React.js]
+    end
+
+    subgraph Application Layer
+        D[Backend API Server<br/>Node.js + Express.js]
+        E[Authentication Module]
+        F[Immunization Tracking Module]
+        G[Notification Service]
+    end
+
+    subgraph Data Layer
+        H[(PostgreSQL Database)]
+    end
+
+    subgraph External Services
+        I[SMS / Email Service]
+    end
+
+    A --> C
+    B --> C
+
+    C --> D
+
+    D --> E
+    D --> F
+    D --> G
+
+    E --> H
+    F --> H
+    G --> H
+
+    G --> I
+
+    H --> D
+    D --> C
+```
 
 
 ---
