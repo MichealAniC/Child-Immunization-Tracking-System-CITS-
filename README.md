@@ -300,8 +300,105 @@ graph TD
     H --> D
     D --> C
 ```
+## System Flow(Runtime Behaviour)
+```mermaid
+sequenceDiagram
 
+    actor Parent
+    actor Admin as Healthcare Worker/Admin
 
+    participant Frontend
+    participant Backend
+    participant Database
+    participant NotificationService as Notification Service
+
+    %% Step 1 - Authentication
+    Parent->>Frontend: 1. Login/Register
+    Frontend->>Backend: 2. Send Authentication Request
+    Backend->>Database: 3. Validate Credentials
+    Database-->>Backend: 4. Return User Data
+    Backend-->>Frontend: 5. Return JWT Token & Access
+
+    %% Step 2 - Child Registration
+    Parent->>Frontend: 6. Register Child
+    Frontend->>Backend: 7. Send Child Information
+    Backend->>Database: 8. Save Child Profile
+    Backend->>Backend: 9. Generate Vaccine Schedule
+    Backend->>Database: 10. Store Vaccine Schedule
+    Backend-->>Frontend: 11. Registration Successful
+
+    %% Step 3 - Immunization Recording
+    Admin->>Frontend: 12. Record Administered Vaccine
+    Frontend->>Backend: 13. Send Immunization Data
+    Backend->>Database: 14. Update Immunization Record
+    Backend->>Backend: 15. Recalculate Vaccine Status
+    Backend-->>Frontend: 16. Record Updated Successfully
+
+    %% Step 4 - Reminder Processing
+    Backend->>Database: 17. Check Vaccine Due Dates
+    Database-->>Backend: 18. Return Due Vaccines
+    Backend->>NotificationService: 19. Trigger Reminder Notification
+    NotificationService-->>Parent: 20. Send SMS / Email Reminder
+
+    %% Step 5 - Viewing Records
+    Parent->>Frontend: 21. Request Immunization History
+    Frontend->>Backend: 22. Fetch Child Records
+    Backend->>Database: 23. Retrieve Immunization Data
+    Database-->>Backend: 24. Return Records
+    Backend-->>Frontend: 25. Display Immunization History
+```
+
+## Data Flow Diagram(DFD) Level 1
+```mermaid
+flowchart TD
+
+    %% External Entities
+    A[Parent / Guardian]
+    B[Healthcare Worker / Admin]
+
+    %% Processes
+    P1((1.0 User Authentication))
+    P2((2.0 Child Registration))
+    P3((3.0 Immunization Tracking))
+    P4((4.0 Notification & Reminder System))
+    P5((5.0 Reports & Records))
+
+    %% Data Stores
+    D1[(Users Database)]
+    D2[(Children Database)]
+    D3[(Immunization Records Database)]
+    D4[(Notifications Database)]
+
+    %% Authentication Flow
+    A -->|Login Details| P1
+    B -->|Login Details| P1
+    P1 -->|Store/Retrieve User Data| D1
+    P1 -->|Authentication Response| A
+    P1 -->|Authentication Response| B
+
+    %% Child Registration Flow
+    A -->|Child Information| P2
+    B -->|Register Child| P2
+    P2 -->|Save Child Profile| D2
+    P2 -->|Registration Confirmation| A
+
+    %% Immunization Tracking Flow
+    B -->|Vaccination Details| P3
+    P3 -->|Store Immunization Record| D3
+    P3 -->|Retrieve Child Records| D2
+    P3 -->|Updated Vaccine Status| B
+
+    %% Notification Flow
+    P4 -->|Retrieve Due Vaccines| D3
+    P4 -->|Store Notification Logs| D4
+    P4 -->|SMS/Email Reminder| A
+
+    %% Reports Flow
+    B -->|Request Reports| P5
+    P5 -->|Retrieve Immunization Data| D3
+    P5 -->|Retrieve Child Data| D2
+    P5 -->|Generate Reports| B
+```
 ---
 
 #  Project Structure
