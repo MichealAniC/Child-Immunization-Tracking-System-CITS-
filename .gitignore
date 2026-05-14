@@ -1,0 +1,55 @@
+# Node modules
+node_modules/
+
+# Backend node modules
+backend/node_modules/
+
+# Frontend node modules
+frontend/node_modules/
+
+# Environment files
+.env
+backend/.env
+
+# Build outputs
+/dist
+/out
+/build
+
+# Logs
+*.log
+
+# Dependencies
+package-lock.json
+yarn.lock
+
+# IDE specific files
+.vscode/
+.idea/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Local development files
+*.local
+
+# Vite specific files
+.vite/
+
+# npm debug log
+npm-debug.log
+
+# Editor directories and files
+.history/
+.cache/
+.temp/
+
+# TypeScript build output
+tsconfig.json
+
+# Tailwind CSS cache
+.tailwindcss/
+
+# React Router cache
+react-router-cache/
